@@ -3,7 +3,9 @@
 台本（Markdown）から、**図解主体・段階表示**の [Marp](https://marp.app/) スライドを作る Claude Code のプラグインです。
 発表・講義・説明動画など、「話す内容が先にあって、それを話しながら映す資料」を作る人向けです。
 
-![見本の出力](examples/hand-drip/preview/sheet-01.png)
+![見本の出力（このプラグインの仕組みを説明するデッキ）](examples/how-it-works/preview/sheet-02.png)
+
+上は、このプラグインの仕組みを、このプラグインで説明した見本です（[全ページ](examples/how-it-works/preview/)）。
 
 ## 何ができるか
 
@@ -27,7 +29,12 @@
 
 台本を用意して、Claude Code に「この台本からスライドを作って」と頼みます。手順は [SKILL.md](skills/script-to-slides/SKILL.md) にあります。
 
-見本: [examples/hand-drip/](examples/hand-drip/)（台本 `talk.script.md`・デッキ `talk.md`・図 `talk_figs.py`）
+見本（どちらも、台本 `talk.script.md`・デッキ `talk.md`・図 `talk_figs.py` の3つ）:
+
+| 見本 | 中身 |
+|------|------|
+| [examples/hand-drip/](examples/hand-drip/) | 最小の見本（7ページ）。新しく作るときのひな形 |
+| [examples/how-it-works/](examples/how-it-works/) | このプラグインの仕組み（12ページ）。分岐・戻りの矢印・照合の線・薄くして強調する段階表示など、込み入った図の例 |
 
 ## 構成
 
@@ -37,7 +44,7 @@ skills/script-to-slides/
 ├── references/       規則（台本との整合性・図の規則・準備）
 ├── scripts/          build_slides.py・check_deck.py・check_figs.mjs・sheet_pages.py
 └── assets/           theme.css・components.css・figlib.py
-examples/hand-drip/   見本
+examples/             見本（hand-drip・how-it-works）
 ```
 
 ## 謝辞
