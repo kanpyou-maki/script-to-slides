@@ -1,6 +1,11 @@
 {
   "name": "script-to-slides",
-  "owner": { "name": "kanpyou-maki" },
+  "owner": {
+    "name": "kanpyou-maki"
+  },
+  "metadata": {
+    "description": "台本から図解主体の Marp スライドを作る script-to-slides プラグインの配布元"
+  },
   "plugins": [
     {
       "name": "script-to-slides",
