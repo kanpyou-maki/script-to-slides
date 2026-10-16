@@ -1,0 +1,11 @@
+{
+  "name": "script-to-slides",
+  "owner": { "name": "kanpyou-maki" },
+  "plugins": [
+    {
+      "name": "script-to-slides",
+      "source": "./",
+      "description": "台本から、図解主体・段階表示の Marp スライドを作る skill と、スライドのレビュアー"
+    }
+  ]
+}

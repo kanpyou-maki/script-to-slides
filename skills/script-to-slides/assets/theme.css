@@ -1,0 +1,216 @@
+/* @theme script-to-slides */
+
+/**
+ * script-to-slides の Marp テーマ本体。色のトークン・文字・ページの種類ごとのレイアウトを定義する。
+ *
+ * 部品（ブラウザの枠・フォーム・ターミナル・注意書きの箱など）は components.css にある。
+ * Marp の @import はデッキの場所を基準に解決されるので、theme.css 単体では components.css を読み込まない。
+ * scripts/build_slides.py が、書き出しのときに2つを結合して --theme-set に渡す（手でコマンドを組まない）。
+ *
+ * --html は必須（図の SVG を埋め込むため）。
+ * キャンバスは Marp 既定の 1280x720（16:9）。文字サイズはスマホで読める下限を基準にしている。
+ */
+
+section {
+  /* --- カラーパレット --- */
+  --navy: #1E3A5F;
+  --blue: #2E86C1;
+  --blue-lt: #A9CEE8;
+  --blue-dk: #1A5C8A;
+  --blue-bg: #D6EAF8;
+  --amber: #E67700;
+  --amber-bg: #FFF3CD;
+  --green: #1E8B4F;
+  --green-bg: #D5F5E3;
+  --danger: #C0392B;
+  --danger-bg: #FDEDEC;
+  --text: #1A1A2E;
+  --bg: #F4F7FB;
+  --gray: #7F8C8D;
+  --gray-bg: #EAECEE;
+  --gray-dk: #555555;
+  --white: #F0F4F8;
+
+  width: 1280px;
+  height: 720px;
+  padding: 56px 72px;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Noto Sans JP", "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Yu Gothic", sans-serif;
+  font-size: 30px;
+  line-height: 1.55;
+}
+
+section h1, section h2, section h3 {
+  font-weight: 700;
+  margin: 0 0 0.4em;
+}
+
+section h1 { font-size: 56px; }
+section h2 { font-size: 40px; }
+section h3 { font-size: 32px; }
+
+section p, section li {
+  font-size: 30px;
+}
+
+section small, section .sub {
+  font-size: 24px;
+  color: var(--gray-dk);
+}
+
+section a { color: var(--blue-dk); }
+
+section ul, section ol {
+  margin: 0.3em 0;
+  padding-left: 1em;
+}
+
+section li { margin: 0.35em 0; }
+
+/* マーカー色ルール（▸マーカーとサブ行は blue、本文は text） */
+section li::marker {
+  color: var(--blue);
+  font-weight: 700;
+}
+
+section code {
+  background: var(--gray-bg);
+  color: var(--text);
+  border-radius: 4px;
+  padding: 0.1em 0.35em;
+  font-size: 0.85em;
+}
+
+section pre {
+  background: var(--gray-bg);
+  border-radius: 8px;
+  padding: 0.6em 0.8em;
+}
+
+/* ==================== スライド種別レイアウト ==================== */
+
+/* タイトルスライド（デッキの1枚目だけ） */
+section.title {
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+section.title h1 { color: var(--white); font-size: 60px; }
+section.title .eyebrow {
+  font-size: 26px;
+  color: var(--blue-lt);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6em;
+}
+
+/* 区切り／最後のメッセージ（多用しない） */
+section.bigmsg {
+  background: var(--navy);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section.bigmsg h1 { color: var(--white); font-size: 52px; }
+section.bigmsg p { font-size: 32px; color: var(--blue-lt); }
+
+/* 通常の内容スライド：上部に見出しバー(header bar)を置く */
+section.content {
+  display: flex;
+  flex-direction: column;
+}
+section.content h2 {
+  background: var(--navy);
+  color: var(--white);
+  margin: -56px -72px 32px;
+  padding: 28px 72px;
+  font-size: 40px;
+}
+
+/* 図が主役のページ: 見出しバーの下に、図（figlib で書き出した SVG）を中央で置く */
+section.content p > img {
+  display: block;
+  margin: 0 auto;
+}
+
+/* まとめスライド（紺地・番号付き） */
+section.summary {
+  background: var(--navy);
+  color: var(--white);
+}
+section.summary h2 { color: var(--white); font-size: 40px; }
+section.summary ol { counter-reset: sm; list-style: none; padding-left: 0; }
+section.summary ol li {
+  counter-increment: sm;
+  margin: 0.6em 0;
+  padding-left: 2em;
+  position: relative;
+}
+section.summary ol li::before {
+  content: counter(sm);
+  position: absolute;
+  left: 0;
+  top: 0.05em;
+  width: 1.5em;
+  height: 1.5em;
+  line-height: 1.5em;
+  border-radius: 50%;
+  background: var(--blue);
+  color: var(--white);
+  font-size: 0.8em;
+  font-weight: 700;
+  text-align: center;
+}
+
+/* ワークスライド（聞き手への指示） */
+section.work {
+  background: var(--blue-bg);
+  border-top: 12px solid var(--blue);
+}
+section.work h2 {
+  background: transparent;
+  color: var(--blue-dk);
+  margin: -44px -72px 32px;
+  padding: 28px 72px 0;
+}
+
+/* 橋渡し・振り返り用の軽量スライド */
+section.bridge {
+  background: var(--gray-bg);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* 台本の[デモ: ...]マーカーに対応する画面共有の合図スライド。具体的な画面内容は書かない */
+section.demo {
+  background: var(--gray-bg);
+  border: 4px dashed var(--gray);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+section.demo .demo__label {
+  font-size: 26px;
+  color: var(--gray-dk);
+  letter-spacing: 0.05em;
+  margin-bottom: 0.6em;
+}
+section.demo h2 {
+  background: transparent;
+  color: var(--gray-dk);
+  margin: 0 0 0.4em;
+  padding: 0;
+  font-size: 36px;
+}
+section.demo p {
+  font-size: 28px;
+  color: var(--text);
+}

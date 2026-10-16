@@ -1,0 +1,8 @@
+{
+  "name": "script-to-slides",
+  "version": "0.1.0",
+  "description": "台本（Markdown）から、図解主体・段階表示の Marp スライドを作る。図を実測して検査し、台本とページの対応を機械で照合する。",
+  "author": { "name": "kanpyou-maki" },
+  "license": "MIT",
+  "keywords": ["marp", "slides", "presentation", "diagram", "japanese"]
+}

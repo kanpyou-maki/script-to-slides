@@ -1,0 +1,187 @@
+/**
+ * script-to-slides の Marp 用の部品の CSS
+ *
+ * UI模型（偽ブラウザ・偽フォーム・ターミナル風コードブロック）と
+ * 注意書き・バッジ等の小さな部品を定義する。色トークンは theme.css の
+ * section { --navy: ...; } で定義された CSS変数を使う（このファイル単体では
+ * 変数は定義しないため、常に theme.css と結合してから読み込むこと。
+ * 結合方法は theme.css 冒頭のコメントを参照）。
+ *
+ * 台本にない見た目上の演出（本物のブランドロゴ等）は追加しない。
+ * あくまで「ブラウザらしきもの」「フォームらしきもの」の模型に留める。
+ */
+
+/* ---------- 偽ブラウザ枠：アドレスバー・タブ風の外枠 ---------- */
+.browser-frame {
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  overflow: hidden;
+  background: var(--white);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.12);
+}
+.browser-frame__bar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: var(--gray-bg);
+  padding: 12px 18px;
+  border-bottom: 1px solid var(--gray);
+}
+.browser-frame__dots { display: flex; gap: 8px; }
+.browser-frame__dots span {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--gray);
+  display: inline-block;
+}
+.browser-frame__url {
+  flex: 1;
+  background: var(--white);
+  border-radius: 6px;
+  padding: 6px 14px;
+  font-size: 22px;
+  color: var(--gray-dk);
+  font-family: "SF Mono", Menlo, "Noto Sans Mono", monospace;
+}
+.browser-frame__body {
+  padding: 28px 32px;
+  font-size: 26px;
+}
+
+/* ---------- 偽フォーム：コメント欄・ログインフォーム等の模型 ---------- */
+.form-mock {
+  background: var(--white);
+  border: 1px solid var(--gray);
+  border-radius: 10px;
+  padding: 24px 28px;
+}
+.form-mock__label {
+  font-size: 22px;
+  color: var(--gray-dk);
+  margin-bottom: 6px;
+}
+.form-mock__input {
+  background: var(--gray-bg);
+  border: 1px solid var(--gray);
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 24px;
+  color: var(--text);
+  font-family: "SF Mono", Menlo, "Noto Sans Mono", monospace;
+  margin-bottom: 18px;
+  white-space: pre-wrap;
+  word-break: break-all;
+}
+.form-mock__input:last-child { margin-bottom: 0; }
+.form-mock__button {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 6px;
+  padding: 10px 24px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+/* ---------- ターミナル／コードブロック風 ---------- */
+.terminal {
+  background: #1C1C1E;
+  color: #F0F4F8;
+  border-radius: 10px;
+  padding: 24px 28px;
+  font-family: "SF Mono", Menlo, "Noto Sans Mono", monospace;
+  font-size: 24px;
+  line-height: 1.6;
+  overflow-wrap: break-word;
+}
+.terminal .prompt { color: #6EC38B; }
+.terminal .comment { color: #8A8F98; }
+.terminal .danger { color: #FF6B5E; }
+
+/* ---------- 注意書き・補足ボックス ---------- */
+.callout {
+  border-left: 8px solid var(--blue);
+  background: var(--blue-bg);
+  border-radius: 0 8px 8px 0;
+  padding: 18px 26px;
+  font-size: 26px;
+}
+.callout .callout__label {
+  font-weight: 700;
+  color: var(--blue-dk);
+  font-size: 22px;
+  margin-bottom: 4px;
+}
+.callout--danger { border-color: var(--danger); background: var(--danger-bg); }
+.callout--danger .callout__label { color: var(--danger); }
+.callout--safe { border-color: var(--green); background: var(--green-bg); }
+.callout--safe .callout__label { color: var(--green); }
+.callout--warn { border-color: var(--amber); background: var(--amber-bg); }
+.callout--warn .callout__label { color: var(--amber); }
+
+/* ---------- バッジ（3原則の分類タグ等） ---------- */
+.badge {
+  display: inline-block;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 999px;
+  padding: 6px 20px;
+  font-size: 22px;
+  font-weight: 700;
+}
+.badge--danger { background: var(--danger); }
+.badge--safe { background: var(--green); }
+.badge--gray { background: var(--gray); }
+
+/* ---------- シンプルな2〜3ノードのフロー（矢印つなぎ） ---------- */
+.flow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+}
+.flow__node {
+  background: var(--white);
+  border: 2px solid var(--gray);
+  border-radius: 10px;
+  padding: 18px 26px;
+  font-size: 26px;
+  text-align: center;
+}
+.flow__node--attacker { border-color: var(--danger); color: var(--danger); }
+.flow__node--victim { border-color: var(--blue); color: var(--blue-dk); }
+.flow__arrow {
+  font-size: 32px;
+  color: var(--gray-dk);
+}
+.flow__arrow .flow__arrow-label {
+  display: block;
+  font-size: 18px;
+  color: var(--gray-dk);
+  margin-top: 4px;
+}
+
+/* ---------- プロフィールカード（講師紹介） ---------- */
+.profile-card {
+  text-align: center;
+  flex-shrink: 0;
+}
+.profile-card__photo {
+  width: 260px;
+  height: 320px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid var(--gray);
+  display: block;
+}
+.profile-card__name {
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text);
+  margin-top: 14px;
+}
+.profile-card__name-en {
+  font-size: 20px;
+  color: var(--gray-dk);
+}
