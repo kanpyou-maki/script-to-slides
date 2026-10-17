@@ -23,6 +23,8 @@
 /plugin install script-to-slides@script-to-slides
 ```
 
+プラグインを使わない場合は、`skills/script-to-slides/` を `~/.claude/skills/` にコピーすればスキルとして使えます（レビュアーのエージェントは付きません）。
+
 道具の準備（Python・Node.js・Chrome・Noto Sans JP）は [references/setup.md](skills/script-to-slides/references/setup.md) を見てください。
 
 ## 使い方
